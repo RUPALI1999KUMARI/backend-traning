@@ -1,28 +1,36 @@
 const express = require('express');
 const abc = require('../introduction/intro')
 const router = express.Router();
-<<<<<<< Updated upstream
+const lodash= require("lodash")
+const logger = require("../logger/logger.js");
+const assignment = require("../util/helper.js");
+const formatter = require("../validator/formatter.js");
+// <<<<<<< Updated upstream
 
 router.get('/test-me', function (req, res) {
     console.log('My batch is', abc.name)
     abc.printName()
     logger.welcome()
 
-    res.send('My second ever api!')
-const lodash= require("lodash")
-const logger = require("../logger/logger.js");
-const assignment = require("../util/helper.js");
-const formatter = require("../validator/formatter.js");
+   
+    res.send('My second ever api!')})
 
 router.get("/test-me", function (req, res) {
   console.log("My batch is", abc.name);
+
+  // 8th aug assignment
+
   let months =['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 
   'October', 'November', 'December'];
   let result=lodash.chunk(months, [size=4]);
   console.log("lodash example is" ,result);
+
+
   let oddno=[1,3,5,7,9,11,13,15,17,19]
   let result2=lodash.tail(oddno)
   console.log("tail example is",result2)
+
+
   let arrays= [1,2,3];
   let array2=[4,5,6];
   let array3=[7,8];
@@ -30,14 +38,20 @@ router.get("/test-me", function (req, res) {
   let array5=[12,13,14,15]
    let result3=lodash.union(arrays,array2,array3,array4,array5);
   console.log("union example is",result3)
+
+
   let pairs= [["horror","The Shining"],["drama","Titanic"],["thriller","Shutter Island"],["fantasy","Pans Labyrinth"]];
    let result4=lodash.fromPairs(pairs)
    console.log("from paris example is",result4)
+
   abc.printName();
+
   logger.logger();
+
   assignment.assignment();
 
   formatter.myformatter();
+
   res.send("My second ever api!");
 });
 
@@ -45,7 +59,7 @@ router.get("/test-me", function (req, res) {
 router.get("/test-you", function (req, res) {
   res.send("This is the second routes implementation");
 });
->>>>>>> Stashed changes
+// >>>>>>> Stashed changes
 
 
 router.get('/students', function (req, res){
