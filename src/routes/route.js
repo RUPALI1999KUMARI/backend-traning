@@ -100,8 +100,6 @@ let players = [
   },
 ];
 
-
-
 router.post("/players", function (req, res) {
   for (let i = 0; i < players.length; i++) {
     if (players[i].name === req.body.name) {
@@ -116,7 +114,7 @@ router.post("/players", function (req, res) {
 let booking = [
   {
     bookingNumber: 1,
-    bookingId:56,
+    bookingId: 56,
     sportId: "",
     centerId: "",
     type: "private",
@@ -126,25 +124,69 @@ let booking = [
   },
 ];
 
-
 router.post("/players/:playerName/bookings/:bookingId", function (req, res) {
-    let playerexist = false
+  let playerexist = false;
   for (let i = 0; i < players.length; i++) {
-    if (players[i].name==req.params.playerName) {
-      playerexist= true
-  }}
- if (!playerexist){
-    return res.send("player does not exist")
- }
+    if (players[i].name == req.params.playerName) {
+      playerexist = true;
+    }
+  }
+  if (!playerexist) {
+    return res.send("player does not exist");
+  }
   for (let i = 0; i < booking.length; i++) {
-    if ((booking[i].bookingId== req.params.bookingId)) {
+    if (booking[i].bookingId == req.params.bookingId) {
       return res.send("booking id already exist");
     }
   }
-  req.body.playerName=req.params.playerName
-  req.body.bookingId=req.params.bookingId
+  req.body.playerName = req.params.playerName;
+  req.body.bookingId = req.params.bookingId;
   booking.push(req.body);
   return res.send(booking);
 });
+
+// WRITE A POST API TO THE ABOVE take this as sample for array of persons :
+
+//  you will be given an array of persons ( 1 .e an array of objects )
+//  .. each person will have a ( name : String , age : Number , votingStatus : true / false
+//  ( Boo Lean take input in query param as votingAge..and for all the people above that age ,
+//    change votingStatus as true also return an array consisting of only the person that can
+
+let persons = [
+  { name: "PK",
+    age: 10,
+    votingStatus: false 
+  },
+  { name: "SK",
+    age: 20,
+    votingStatus: false 
+  },
+  {
+    name: "AA",
+    age: 70,
+    votingStatus: false,
+  },
+  {
+    name: "SC",
+    age: 5,
+    votingStatus: false,
+  },
+  { name: "HO",
+   age: 40,
+   votingStatus: false
+   },
+];
+router.get("/persons",function(req,res){
+
+     let age2=req.query.age
+     let result=[]
+     for(let i=0;i<persons.length;i++){
+       if(persons[i].age>age2){
+        persons[i].votingStatus=true
+        result.push(persons[i])
+       }
+     }
+     res.send(result)
+})
 
 module.exports = router;
