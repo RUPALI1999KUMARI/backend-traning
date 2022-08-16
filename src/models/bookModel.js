@@ -14,13 +14,23 @@ const bookSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-    },
-    year: {
+    },                    
+    year: {                     
       type: Number,
       required: true,
     },
+    pages:{
+      type:Number,
+    },
+    stockAvailable:{
+      type:Boolean
+    },
+    price:{
+      type:String,
+    }
   },
   { timestamps: true }
+
 );
 
-module.exports = mongoose.model("books", bookSchema);
+module.exports = mongoose.model("myBooks", bookSchema);
