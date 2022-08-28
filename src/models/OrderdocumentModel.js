@@ -9,11 +9,11 @@ const orderSchema = new mongoose.Schema({
         type:ObjectId
     },
     amount: Number,
-    isFreeAppUser: true,
+    isFreeAppUser: Boolean,
     date: String,
 
 },
     { timestamps: true }
 );
 
-module.exports = mongoose.model('Order', orderSchema)
+module.exports = mongoose.model('myOrder', orderSchema)
