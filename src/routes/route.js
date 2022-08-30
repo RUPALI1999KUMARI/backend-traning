@@ -9,8 +9,7 @@ router.get("/test-me", function (req, res) {
 
 router.post("/users", userController.createUser  )
 router.post("/login", userController.userLogin)
-router.get("/users/:userId",middleware.checkAuth, userController.getUser)
-router.put("/users/:userId",middleware.checkAuth, userController.updateUser)
-router.delete("/users/:userId",middleware.checkAuth, userController.deleteUser)
-
+router.get("/users/:userId",middleware.authenticator,middleware.authorizer, userController.getUser)
+router.put("/users/:userId",middleware.authenticator,middleware.authorizer ,userController.updateUser)
+router.delete("/users/:userId",middleware.authenticator,middleware.authorizer, userController.deleteUser)
 module.exports = router;
